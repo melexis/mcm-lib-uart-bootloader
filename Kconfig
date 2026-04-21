@@ -1,0 +1,15 @@
+orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
+
+menu "MCM - UART Bootloader Configuration"
+
+    config UART_BOOTLOADER_UART_PORT_NUM
+        int "UART bootloader UART port number"
+        range 0 2 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S3
+        default 2 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32S3
+        range 0 1
+        default 1
+        help
+            UART communication port number for the UART bootloader.
+            See UART documentation for available port numbers.
+
+endmenu

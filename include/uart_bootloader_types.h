@@ -33,7 +33,7 @@ extern "C" {
 #endif
 
 /** UART bootloader memory types enum */
-typedef enum ppm_memory_e {
+typedef enum uartbtl_memory_e {
     UARTBTL_MEM_NVRAM = 0,              /**< non volatile memory */
     UARTBTL_MEM_FLASH,                  /**< flash memory */
     UARTBTL_MEM_FLASH_CS,               /**< flash configuration memory */
@@ -41,7 +41,7 @@ typedef enum ppm_memory_e {
 } uartbtl_memory_t;                     /**< UART bootloader memory type */
 
 /** UART bootloader action types enum */
-typedef enum ppm_action_e {
+typedef enum uartbtl_action_e {
     UARTBTL_ACT_PROGRAM = 0,            /**< program memory */
     UARTBTL_ACT_VERIFY,                 /**< verify memory */
     UARTBTL_ACT_INVALID = 255           /**< invalid action */

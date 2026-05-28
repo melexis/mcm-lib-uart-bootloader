@@ -66,7 +66,7 @@ typedef enum uartbtl_err_e {
     UART_BTL_FAIL_CHIP_POWERED = -522,         /**< chip is still powered and can not be reset */
 } uartbtl_err_t;                               /**< UART bootloader error code type */
 
-/** convert a UART bootloader error code in a human readable message
+/** Convert a UART bootloader error code in a human readable message
  *
  * @param[in]  code  UART bootloader error code to translate.
  * @returns  A constant string describing the error.

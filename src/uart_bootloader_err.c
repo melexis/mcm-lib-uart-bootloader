@@ -75,5 +75,5 @@ const char *uartbtl_err_to_string(uartbtl_err_t code) {
         }
     }
 
-    return "Unknown error";
+    return "unknown error";
 }

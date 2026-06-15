@@ -39,7 +39,7 @@ static const struct {
     {UART_BTL_OK, "operation was successful"},
     /* chip reported error codes */
     {UART_BTL_FAIL_INVALID_FRAME_ID, "invalid frame identifier"},
-    {UART_BTL_FAIL_INVALID_PL_LEN, "invalid payload length"},
+    {UART_BTL_FAIL_CORRUPT_RESPONSE, "corrupted response"},
     {UART_BTL_FAIL_INVALID_PAGE_NR, "invalid page number"},
     {UART_BTL_FAIL_INVALID_CRC, "invalid checksum"},
     {UART_BTL_FAIL_INVALID_KEY, "invalid key received"},
@@ -75,5 +75,5 @@ const char *uartbtl_err_to_string(uartbtl_err_t code) {
         }
     }
 
-    return "Unknown error";
+    return "unknown error";
 }

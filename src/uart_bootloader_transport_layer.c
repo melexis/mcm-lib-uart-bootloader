@@ -335,7 +335,7 @@ uartbtl_err_t uartbtltl_receiveMessage(btlCommands_t command,
                     retval = UART_BTL_OK;
                 }
             } else {
-                retval = UART_BTL_FAIL_INVALID_PL_LEN;
+                retval = UART_BTL_FAIL_CORRUPT_RESPONSE;
             }
         }
     }

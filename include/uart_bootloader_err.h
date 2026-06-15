@@ -38,6 +38,7 @@ typedef enum uartbtl_err_e {
     /* chip reported error codes */
     UART_BTL_FAIL_INVALID_FRAME_ID = -1,       /**< invalid frame identifier */
     UART_BTL_FAIL_CORRUPT_RESPONSE = -2,       /**< corrupted response */
+    UART_BTL_FAIL_INVALID_PL_LEN = UART_BTL_FAIL_CORRUPT_RESPONSE, /**< deprecated alias */
     UART_BTL_FAIL_INVALID_PAGE_NR = -3,        /**< invalid page number */
     UART_BTL_FAIL_INVALID_CRC = -4,            /**< invalid checksum */
     UART_BTL_FAIL_INVALID_KEY = -16,           /**< invalid key received */

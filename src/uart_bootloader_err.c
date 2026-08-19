@@ -66,6 +66,7 @@ static const struct {
     {UART_BTL_FAIL_HEX_NOT_COMPATIBLE, "hex file is not compatible with connected chip"},
     {UART_BTL_FAIL_VSUP_LOW, "supply voltage too low"},
     {UART_BTL_FAIL_CHIP_POWERED, "chip is still powered and can not be reset"},
+    {UART_BTL_FAIL_ACTION_NOT_SUPPORTED, "action is not supported for the connected chip"},
 };
 
 const char *uartbtl_err_to_string(uartbtl_err_t code) {

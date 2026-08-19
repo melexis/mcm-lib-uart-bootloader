@@ -428,7 +428,14 @@ uartbtl_err_t uartbtl_programFlash(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        } else if (retval >= 0) {
+        }
+
+        if (chip->memories.flash == NULL) {
+            /* chip does not have flash memory */
+            retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
+        }
+
+        if (retval >= 0) {
             ESP_LOGI(TAG, "Programming %s with btl size=%d", chip->name, btl_size);
 
             const mlx_flash_t * memory = chip->memories.flash;
@@ -513,6 +520,11 @@ uartbtl_err_t uartbtl_verifyFlash(ihexContainer_t * ihex) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
         }
 
+        if (chip->memories.flash == NULL) {
+            /* chip does not have flash memory */
+            retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
+        }
+
         if (retval >= 0) {
             retval = uartbtl_cmdFlashBist(&bist_chip);
         }
@@ -571,7 +583,14 @@ uartbtl_err_t uartbtl_programNvram(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        } else if (retval >= 0) {
+        }
+
+        if (chip->memories.nv_memory == NULL) {
+            /* chip does not have nv memory */
+            retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
+        }
+
+        if (retval >= 0) {
             uint32_t nvramStart = chip->memories.nv_memory->start;
             uint32_t nvramEnd = chip->memories.nv_memory->start + chip->memories.nv_memory->writeable - 1;
             uint32_t nvramPageSize = chip->memories.nv_memory->page;
@@ -643,6 +662,11 @@ uartbtl_err_t uartbtl_verifyNvram(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
+        }
+
+        if (chip->memories.nv_memory == NULL) {
+            /* chip does not have nv memory */
+            retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
         }
 
         if (retval >= 0) {

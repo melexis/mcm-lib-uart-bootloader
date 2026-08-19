@@ -65,6 +65,7 @@ typedef enum uartbtl_err_e {
     UART_BTL_FAIL_HEX_NOT_COMPATIBLE = -520,   /**< hex file is not compatible with connected chip */
     UART_BTL_FAIL_VSUP_LOW = -521,             /**< supply voltage too low */
     UART_BTL_FAIL_CHIP_POWERED = -522,         /**< chip is still powered and can not be reset */
+    UART_BTL_FAIL_ACTION_NOT_SUPPORTED = -523, /**< action is not supported for the connected chip */
 } uartbtl_err_t;                               /**< UART bootloader error code type */
 
 /** Convert a UART bootloader error code in a human readable message

@@ -428,9 +428,7 @@ uartbtl_err_t uartbtl_programFlash(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        }
-
-        if (chip->memories.flash == NULL) {
+        } else if (chip->memories.flash == NULL) {
             /* chip does not have flash memory */
             retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
         }
@@ -518,9 +516,7 @@ uartbtl_err_t uartbtl_verifyFlash(ihexContainer_t * ihex) {
         const mlx_chip_t * chip = mlxchip_get_camcu_chip(project_id);
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        }
-
-        if (chip->memories.flash == NULL) {
+        } else if (chip->memories.flash == NULL) {
             /* chip does not have flash memory */
             retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
         }
@@ -583,9 +579,7 @@ uartbtl_err_t uartbtl_programNvram(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        }
-
-        if (chip->memories.nv_memory == NULL) {
+        } else if (chip->memories.nv_memory == NULL) {
             /* chip does not have nv memory */
             retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
         }
@@ -662,9 +656,7 @@ uartbtl_err_t uartbtl_verifyNvram(ihexContainer_t * ihex) {
 
         if ((chip == NULL) || (chip->bootloaders.uart_loader == NULL)) {
             retval = UART_BTL_FAIL_CHIP_NOT_SUPPORTED;
-        }
-
-        if (chip->memories.nv_memory == NULL) {
+        } else if (chip->memories.nv_memory == NULL) {
             /* chip does not have nv memory */
             retval = UART_BTL_FAIL_ACTION_NOT_SUPPORTED;
         }

@@ -722,13 +722,21 @@ uartbtl_err_t uartbtl_readChipInfo(bool manpow,
         }
 
         int32_t vsup = uartbtl_getVSupply();
-        if (vsup < 4500u) {
+        if (vsup < 4500) {
             ESP_LOGE(TAG, "Vsup level is too low %i mV", (int)vsup);
             uartstat = UART_BTL_FAIL_VSUP_LOW;
         }
 
-        int32_t vchip = uartbtl_getVChip();
-        if (vchip > 4500u) {
+        /* wait for chip voltage to decrease */
+        int32_t vchip;
+        for (int i = 0; i < 10; i++) {
+            vchip = uartbtl_getVChip();
+            if (vchip < 4500) {
+                break;
+            }
+            vTaskDelay(50 / portTICK_PERIOD_MS);
+        }
+        if (vchip > 4500) {
             ESP_LOGE(TAG, "Vchip level is too high %i mV, chip not properly reset", (int)vchip);
             uartstat = UART_BTL_FAIL_CHIP_POWERED;
         }
@@ -772,7 +780,7 @@ uartbtl_err_t uartbtl_doAction(bool manpow,
             }
 
             int32_t vsup = uartbtl_getVSupply();
-            if (vsup < 4500u) {
+            if (vsup < 4500) {
                 ESP_LOGE(TAG, "Vsup level is too low %i mV", (int)vsup);
                 uartstat = UART_BTL_FAIL_VSUP_LOW;
             }
@@ -781,12 +789,12 @@ uartbtl_err_t uartbtl_doAction(bool manpow,
             int32_t vchip;
             for (int i = 0; i < 10; i++) {
                 vchip = uartbtl_getVChip();
-                if (vchip < 4500u) {
+                if (vchip < 4500) {
                     break;
                 }
                 vTaskDelay(50 / portTICK_PERIOD_MS);
             }
-            if (vchip > 4500u) {
+            if (vchip > 4500) {
                 ESP_LOGE(TAG, "Vchip level is too high %i mV, chip not properly reset", (int)vchip);
                 uartstat = UART_BTL_FAIL_CHIP_POWERED;
             }

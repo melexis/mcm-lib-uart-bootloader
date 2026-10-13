@@ -727,7 +727,15 @@ uartbtl_err_t uartbtl_readChipInfo(bool manpow,
             uartstat = UART_BTL_FAIL_VSUP_LOW;
         }
 
-        int32_t vchip = uartbtl_getVChip();
+        /* wait for chip voltage to decrease */
+        int32_t vchip;
+        for (int i = 0; i < 10; i++) {
+            vchip = uartbtl_getVChip();
+            if (vchip < 4500u) {
+                break;
+            }
+            vTaskDelay(50 / portTICK_PERIOD_MS);
+        }
         if (vchip > 4500u) {
             ESP_LOGE(TAG, "Vchip level is too high %i mV, chip not properly reset", (int)vchip);
             uartstat = UART_BTL_FAIL_CHIP_POWERED;
